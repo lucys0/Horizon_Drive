@@ -121,6 +121,7 @@ def read_and_display_data(hat, num_channels):
     # samples (up to the default buffer size) be returned.
     timeout = 5.0
 
+    # a_in_scan_read()
     # Read all of the available samples (up to the size of the read_buffer which
     # is specified by the user_buffer_size).  Since the read_request_size is set
     # to -1 (READ_ALL_AVAILABLE), this function returns immediately with
@@ -132,7 +133,7 @@ def read_and_display_data(hat, num_channels):
     # This function is similar to a_in_scan_read() except that the data key in the returned namedtuple is
     # a NumPy array of float64 values and may be used directly with NumPy functions.
     while True:
-        read_result = hat.a_in_scan_read(read_request_size, timeout)
+        read_result = hat.a_in_scan_read_numpy(read_request_size, timeout)
 
         # Check for an overrun error
         if read_result.hardware_overrun:
